@@ -1,7 +1,7 @@
 ﻿using Google.Apis.Bigquery.v2.Data;
 using Google.Cloud.BigQuery.V2;
 
-namespace sharpbq.DataAccess;
+namespace sharpbq.DataAccess.Clients;
 
 public interface ISharpBQClient
 {

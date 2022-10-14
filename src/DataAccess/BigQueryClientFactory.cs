@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using sharpbq.Configuration;
+using sharpbq.DataAccess.Clients;
 
 namespace sharpbq.DataAccess;
 
