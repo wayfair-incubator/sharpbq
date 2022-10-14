@@ -2,6 +2,7 @@
 using Google.Cloud.BigQuery.V2;
 using Microsoft.Extensions.Options;
 using sharpbq.Configuration;
+using sharpbq.Extensions;
 
 namespace sharpbq.DataAccess;
 
@@ -30,10 +31,10 @@ public abstract class DataStoreBase : IDataStoreBase
         }
 
         var resultsList = new List<T>();
-        if (results.TotalRows != null && results.TotalRows > 0)
+        if (results.TotalRows is > 0)
         {
-            var columnNames = results.Schema.Fields.Select(f => f.Name).ToList<string>();
-            resultsList = results.Select(r => MapRowToObject<T>(r, columnNames)).ToList<T>();
+            var columnNames = results.Schema.Fields.Select(f => f.Name).ToList();
+            resultsList = results.Select(r => r.MapToObject<T>(columnNames)).ToList();
         }
 
         return resultsList;
@@ -55,29 +56,12 @@ public abstract class DataStoreBase : IDataStoreBase
         }
 
         var resultsList = new List<T>();
-        if (results.TotalRows != null && results.TotalRows > 0)
+        if (results.TotalRows is > 0)
         {
-            var columnNames = results.Schema.Fields.Select(f => f.Name).ToList<string>();
-            resultsList = results.Select(r => MapRowToObject<T>(r, columnNames)).ToList<T>();
+            var columnNames = results.Schema.Fields.Select(f => f.Name).ToList();
+            resultsList = results.Select(r => r.MapToObject<T>(columnNames)).ToList();
         }
 
         return resultsList;
-    }
-
-    private T MapRowToObject<T>(BigQueryRow row, List<string> columnNames)
-    {
-        var rowAsDictionary = new Dictionary<string, object>();
-        foreach (var columnName in columnNames)
-        {
-            rowAsDictionary.Add(columnName, row[columnName]);
-        }
-
-        var json = Newtonsoft.Json.JsonConvert.SerializeObject(rowAsDictionary);
-        T? obj = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
-
-        if (obj == null)
-            throw new Exception($"BigQuery result rows do not map to the specified object type {typeof(T)}");
-        
-        return obj;
     }
 }
