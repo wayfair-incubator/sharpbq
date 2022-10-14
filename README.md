@@ -9,7 +9,6 @@ A C# BigQuery wrapper.
 
 ## Getting Started
 
-
 Get the latest version with NuGet:
 
 ```shell
