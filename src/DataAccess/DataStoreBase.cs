@@ -10,7 +10,7 @@ public class DataStoreBase : IDataStoreBase
 
     private readonly ISharpBQClient _client;
 
-    protected DataStoreBase(IBigQueryClientFactory factory)
+    public DataStoreBase(IBigQueryClientFactory factory)
     {
         _client = factory.Create();
     }
