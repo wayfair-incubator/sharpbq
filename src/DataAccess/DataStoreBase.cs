@@ -1,30 +1,25 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Cloud.BigQuery.V2;
-using Microsoft.Extensions.Options;
-using sharpbq.Configuration;
+﻿using Google.Cloud.BigQuery.V2;
 using sharpbq.Extensions;
 
 namespace sharpbq.DataAccess;
 
-public abstract class DataStoreBase : IDataStoreBase
+public class DataStoreBase : IDataStoreBase
 {
-    protected abstract int TimeoutInMinutes { get; }
+    private const int TimeoutInMinutes = 5;
 
-    private readonly BigQueryProjectSettings _config;
+    private readonly ISharpBQClient _client;
 
-    protected DataStoreBase(IOptions<BigQueryProjectSettings> config)
+    protected DataStoreBase(IBigQueryClientFactory factory)
     {
-        _config = config.Value;
+        _client = factory.Create();
     }
 
-    public List<T> Query<T>(string queryString, BigQueryClient client = null)
+    public List<T> Query<T>(string queryString)
     {
-        client ??= BigQueryClient.Create(_config.ProjectId, GoogleCredential.FromJson(_config.Credentials));
-
-        var results = client.ExecuteQuery(queryString, parameters: null, new QueryOptions { UseQueryCache = false },
+        var results = _client.ExecuteQuery(queryString, parameters: null, new QueryOptions { UseQueryCache = false },
             new GetQueryResultsOptions { Timeout = TimeSpan.FromMinutes(TimeoutInMinutes) });
 
-        var job = client.GetJob(results.JobReference);
+        var job = _client.GetJob(results.JobReference);
         if (job.Status.ErrorResult != null)
         {
             throw new Exception(job.Status.ErrorResult.Message);
@@ -40,16 +35,13 @@ public abstract class DataStoreBase : IDataStoreBase
         return resultsList;
     }
 
-    public async Task<List<T>> QueryAsync<T>(string queryString, List<BigQueryParameter> parameters = null,
-        BigQueryClient client = null)
+    public async Task<List<T>> QueryAsync<T>(string queryString, List<BigQueryParameter> parameters = null)
     {
-        client ??= await BigQueryClient.CreateAsync(_config.ProjectId, GoogleCredential.FromJson(_config.Credentials));
-
-        var results = await client.ExecuteQueryAsync(queryString, parameters: parameters,
+        var results = await _client.ExecuteQueryAsync(queryString, parameters: parameters,
             new QueryOptions { UseQueryCache = false },
             new GetQueryResultsOptions { Timeout = TimeSpan.FromMinutes(TimeoutInMinutes) });
 
-        var job = await client.GetJobAsync(results.JobReference);
+        var job = await _client.GetJobAsync(results.JobReference);
         if (job.Status.ErrorResult != null)
         {
             throw new Exception(job.Status.ErrorResult.Message);
