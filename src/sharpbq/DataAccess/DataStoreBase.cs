@@ -36,8 +36,8 @@ public abstract class BigQueryDataStoreBase
         var resultsList = new List<T>();
         if (results.TotalRows != null && results.TotalRows > 0)
         {
-            var columnNames = Enumerable.ToList<string>(results.Schema.Fields.Select(f => f.Name));
-            resultsList = Enumerable.ToList<T>(results.Select(r => MapRowToObject<T>(r, columnNames)));
+            var columnNames = results.Schema.Fields.Select(f => f.Name).ToList<string>();
+            resultsList = results.Select(r => MapRowToObject<T>(r, columnNames)).ToList<T>();
         }
 
         return resultsList;
@@ -61,8 +61,8 @@ public abstract class BigQueryDataStoreBase
         var resultsList = new List<T>();
         if (results.TotalRows != null && results.TotalRows > 0)
         {
-            var columnNames = Enumerable.ToList<string>(results.Schema.Fields.Select(f => f.Name));
-            resultsList = Enumerable.ToList<T>(results.Select(r => MapRowToObject<T>(r, columnNames)));
+            var columnNames = results.Schema.Fields.Select(f => f.Name).ToList<string>();
+            resultsList = results.Select(r => MapRowToObject<T>(r, columnNames)).ToList<T>();
         }
 
         return resultsList;
@@ -77,6 +77,11 @@ public abstract class BigQueryDataStoreBase
         }
 
         var json = Newtonsoft.Json.JsonConvert.SerializeObject(rowAsDictionary);
-        return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+        T? obj = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+
+        if (obj == null)
+            throw new Exception($"BigQuery result rows do not map to the specified object type {typeof(T)}");
+        
+        return obj;
     }
 }
