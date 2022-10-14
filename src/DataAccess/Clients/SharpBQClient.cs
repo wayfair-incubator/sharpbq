@@ -3,7 +3,7 @@ using Google.Apis.Bigquery.v2.Data;
 using Google.Cloud.BigQuery.V2;
 using sharpbq.Configuration;
 
-namespace sharpbq.DataAccess;
+namespace sharpbq.DataAccess.Clients;
 
 public class SharpBQClient : ISharpBQClient
 {

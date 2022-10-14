@@ -1,4 +1,5 @@
 ﻿using Google.Cloud.BigQuery.V2;
+using sharpbq.DataAccess.Clients;
 using sharpbq.Extensions;
 
 namespace sharpbq.DataAccess;
