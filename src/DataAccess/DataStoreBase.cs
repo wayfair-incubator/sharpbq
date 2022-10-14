@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
 using Google.Cloud.BigQuery.V2;
 using Microsoft.Extensions.Options;
 using sharpbq.Configuration;
 
 namespace sharpbq.DataAccess;
 
-public abstract class BigQueryDataStoreBase
+public abstract class DataStoreBase : IDataStoreBase
 {
     protected abstract int TimeoutInMinutes { get; }
 
     private readonly BigQueryProjectSettings _config;
 
-    protected BigQueryDataStoreBase(IOptions<BigQueryProjectSettings> config)
+    protected DataStoreBase(IOptions<BigQueryProjectSettings> config)
     {
         _config = config.Value;
     }
 
-    protected List<T> Query<T>(string queryString, BigQueryClient client = null)
+    public List<T> Query<T>(string queryString, BigQueryClient client = null)
     {
         client ??= BigQueryClient.Create(_config.ProjectId, GoogleCredential.FromJson(_config.Credentials));
 
@@ -43,7 +39,7 @@ public abstract class BigQueryDataStoreBase
         return resultsList;
     }
 
-    protected async Task<List<T>> QueryAsync<T>(string queryString, List<BigQueryParameter> parameters = null,
+    public async Task<List<T>> QueryAsync<T>(string queryString, List<BigQueryParameter> parameters = null,
         BigQueryClient client = null)
     {
         client ??= await BigQueryClient.CreateAsync(_config.ProjectId, GoogleCredential.FromJson(_config.Credentials));
