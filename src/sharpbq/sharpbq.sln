@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sharpbq", "sharpbq.csproj", "{43503243-9C7C-4BB5-822F-CED6D54A6763}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
