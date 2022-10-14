@@ -4,12 +4,12 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="\"/>
+        <None Include="../README.md" Pack="true" PackagePath="\"/>
         <PackageReference Include="Google.Cloud.BigQuery.V2" Version="3.1.0" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
     </ItemGroup>
