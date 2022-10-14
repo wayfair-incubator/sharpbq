@@ -1,6 +1,7 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Bigquery.v2.Data;
 using Google.Cloud.BigQuery.V2;
+using Microsoft.Extensions.Options;
 using sharpbq.Configuration;
 
 namespace sharpbq.DataAccess.Clients;
@@ -9,9 +10,9 @@ public class SharpBQClient : ISharpBQClient
 {
     private readonly BigQueryClient _client;
     
-    public SharpBQClient(BigQueryProjectSettings config)
+    public SharpBQClient(IOptions<BigQueryProjectSettings> config)
     {
-        _client = BigQueryClient.Create(config.ProjectId, GoogleCredential.FromJson(config.Credentials));
+        _client = BigQueryClient.Create(config.Value.ProjectId, GoogleCredential.FromJson(config.Value.Credentials));
     }
 
     public BigQueryResults ExecuteQuery(string sql, IEnumerable<BigQueryParameter> parameters,
