@@ -1,6 +1,4 @@
-﻿using Google.Cloud.BigQuery.V2;
-
-namespace sharpbq.DataAccess;
+﻿namespace sharpbq.DataAccess;
 
 public interface IBigQueryClientFactory
 {
