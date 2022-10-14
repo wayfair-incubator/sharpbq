@@ -2,7 +2,7 @@
 [![Lint](https://github.com/wayfair-incubator/sharpbq/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/wayfair-incubator/sharpbq/actions/workflows/lint.yml)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![Maintainer](https://img.shields.io/badge/Maintainer-Wayfair-7F187F)](https://wayfair.github.io)
-[![Coverage][coverage-shield]][coverage-url]
+[![codecov](https://codecov.io/github/wayfair-incubator/sharpbq/branch/main/graph/badge.svg?token=6ZMNZhvc0i)](https://codecov.io/github/wayfair-incubator/sharpbq)
 
 ## About The Project
 
