@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Google.Cloud.BigQuery.V2" Version="3.1.0" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    </ItemGroup>
+
 </Project>
