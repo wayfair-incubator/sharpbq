@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sharpbq", "src\sharpbq.csproj", "{43503243-9C7C-4BB5-822F-CED6D54A6763}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sharpbq.UnitTests", "test\sharpbq.UnitTests\sharpbq.UnitTests.csproj", "{64E97FE6-27BE-4F37-871E-D7311956BDE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43503243-9C7C-4BB5-822F-CED6D54A6763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64E97FE6-27BE-4F37-871E-D7311956BDE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64E97FE6-27BE-4F37-871E-D7311956BDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64E97FE6-27BE-4F37-871E-D7311956BDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64E97FE6-27BE-4F37-871E-D7311956BDE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80C62D89-3624-492C-8EEE-E440D7A15F6C}
+	EndGlobalSection
+EndGlobal
