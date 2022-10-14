@@ -2,6 +2,7 @@
 [![Lint](https://github.com/wayfair-incubator/sharpbq/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/wayfair-incubator/sharpbq/actions/workflows/lint.yml)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 [![Maintainer](https://img.shields.io/badge/Maintainer-Wayfair-7F187F)](https://wayfair.github.io)
+[![Coverage][coverage-shield]][coverage-url]
 
 ## About The Project
 
@@ -19,7 +20,6 @@ Install-Package sharpbq
 ## Usage
 
 // TODO
-// Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://wayfair-incubator.github.io/sharpbq)_
 
