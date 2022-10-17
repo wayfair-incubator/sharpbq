@@ -15,19 +15,26 @@ public class SharpBQClient : ISharpBQClient
         _client = BigQueryClient.Create(config.Value.ProjectId, GoogleCredential.FromJson(config.Value.Credentials));
     }
 
-    public BigQueryResults ExecuteQuery(string sql, IEnumerable<BigQueryParameter> parameters,
-        QueryOptions queryOptions = null,
-        GetQueryResultsOptions resultsOptions = null) =>
+    public BigQueryResults ExecuteQuery(string sql, IEnumerable<BigQueryParameter>? parameters,
+        QueryOptions? queryOptions = null,
+        GetQueryResultsOptions? resultsOptions = null) =>
         _client.ExecuteQuery(sql, parameters, queryOptions, resultsOptions);
 
-    public async Task<BigQueryResults> ExecuteQueryAsync(string sql, IEnumerable<BigQueryParameter> parameters,
-        QueryOptions queryOptions = null,
-        GetQueryResultsOptions resultsOptions = null) =>
-        await _client.ExecuteQueryAsync(sql, parameters, queryOptions, resultsOptions);
+    public async Task<BigQueryResults> ExecuteQueryAsync(string sql, IEnumerable<BigQueryParameter>? parameters,
+        QueryOptions? queryOptions = null,
+        GetQueryResultsOptions? resultsOptions = null,
+        CancellationToken token = default) =>
+        await _client.ExecuteQueryAsync(sql, parameters, queryOptions, resultsOptions, token);
 
-    public BigQueryJob GetJob(JobReference jobReference, GetJobOptions options = null) =>
+    public BigQueryJob GetJob(JobReference jobReference, GetJobOptions? options = null) =>
         _client.GetJob(jobReference, options);
     
-    public async Task<BigQueryJob> GetJobAsync(JobReference jobReference, GetJobOptions options = null) =>
-        await _client.GetJobAsync(jobReference, options);
+    public async Task<BigQueryJob> GetJobAsync(JobReference jobReference, GetJobOptions? options = null,
+        CancellationToken token = default) =>
+        await _client.GetJobAsync(jobReference, options, token);
+
+    public BigQueryClient getRawClient()
+    {
+        return _client;
+    }
 }

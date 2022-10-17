@@ -4,7 +4,7 @@ namespace sharpbq.DataAccess;
 
 public interface IDataStoreBase
 {
-    List<T> Query<T>(string queryString);
+    List<T> Query<T>(string queryString, IEnumerable<BigQueryParameter>? parameters = null, CancellationToken token = default);
 
-    Task<List<T>> QueryAsync<T>(string queryString, List<BigQueryParameter> parameters = null);
+    Task<List<T>> QueryAsync<T>(string queryString, IEnumerable<BigQueryParameter>? parameters = null, CancellationToken token = default);
 }

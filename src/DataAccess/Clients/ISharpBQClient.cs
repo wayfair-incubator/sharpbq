@@ -5,13 +5,19 @@ namespace sharpbq.DataAccess.Clients;
 
 public interface ISharpBQClient
 {
-    BigQueryResults ExecuteQuery(string sql, IEnumerable<BigQueryParameter> parameters,
-        QueryOptions queryOptions = null, GetQueryResultsOptions resultsOptions = null);
+    BigQueryResults ExecuteQuery(string sql, IEnumerable<BigQueryParameter>? parameters,
+        QueryOptions? queryOptions = null,
+        GetQueryResultsOptions? resultsOptions = null);
     
-    Task<BigQueryResults> ExecuteQueryAsync(string sql, IEnumerable<BigQueryParameter> parameters,
-        QueryOptions queryOptions = null, GetQueryResultsOptions resultsOptions = null);
+    Task<BigQueryResults> ExecuteQueryAsync(string sql, IEnumerable<BigQueryParameter>? parameters,
+        QueryOptions? queryOptions = null,
+        GetQueryResultsOptions? resultsOptions = null,
+        CancellationToken token = default);
     
-    BigQueryJob GetJob(JobReference jobReference, GetJobOptions options = null);
+    BigQueryJob GetJob(JobReference jobReference, GetJobOptions? options = null);
     
-    Task<BigQueryJob> GetJobAsync(JobReference jobReference, GetJobOptions options = null);
+    Task<BigQueryJob> GetJobAsync(JobReference jobReference, GetJobOptions? options = null,
+        CancellationToken token = default);
+
+    BigQueryClient getRawClient();
 }
