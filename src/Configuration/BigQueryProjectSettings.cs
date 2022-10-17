@@ -2,6 +2,6 @@
 
 public class BigQueryProjectSettings
 {
-    public string ProjectId { get; set; }
-    public string Credentials { get; set; }
+    public string? ProjectId { get; set; }
+    public string? Credentials { get; set; }
 }
